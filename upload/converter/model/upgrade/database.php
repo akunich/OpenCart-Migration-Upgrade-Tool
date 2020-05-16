@@ -85,6 +85,8 @@ class ModelUpgradeDatabase extends Model {
         $this->collatecounter = 0;
         $this->columncollatecounter = 0;
 
+        $this->info = $this->model_upgrade_info->getInfo();
+
         $this->lang = $this->lmodel->get('upgrade_database');
         $this->languages = $this->structure->language(); 
 
@@ -152,7 +154,7 @@ class ModelUpgradeDatabase extends Model {
 						if ($field['collation']) {
 							$sql .= " " . $field['collation'];
 						} elseif(!$int){
-						   if(!substr($this->info['version'],'1.5.5') && !substr($this->info['version'], '1.5.6') && $this->info['version'] < 2){
+						   if(substr($this->info['version'], 0, 5) != '1.5.5' && substr($this->info['version'], 0, 5) != '1.5.6' && intval($this->info['version']) < 2){
 							   $sql .= " COLLATE `utf8_general_ci`";
 						    }
 						}

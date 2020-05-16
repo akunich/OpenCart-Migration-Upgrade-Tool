@@ -67,11 +67,11 @@ class ControllerUpgradeInfo extends Controller {
 
                 $this->data['expirend'] = $expired_tables;
 
-                if($missing_tables === 0 && $level == 0){
+                if(@$missing_tables === 0 && $level == 0){
                   $this->data['text_tables_complete'] = $this->language->get('text_tables_complete');
                 } 
 
-                 $this->data['missing'] = $missing_tables;
+                 $this->data['missing'] = @$missing_tables;
 
 		$this->template = 'upgrade/info.tpl';
 

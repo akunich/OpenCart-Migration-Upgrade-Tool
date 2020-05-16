@@ -85,7 +85,7 @@ if( array_search('store_id', $ret ) ){
 	     if (!$setting['serialized']) {
 	  	$config->set($setting['key'], $setting['value']);
 	     } else {
-		$config->set($setting['key'], unserialize($setting['value']));
+		$config->set($setting['key'], @unserialize($setting['value']));
 	     }
         } else {
       /*
